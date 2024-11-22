@@ -27,9 +27,13 @@ const core = require('@actions/core');
 
 
     execSync(`git tag ${newTag}`);
+    execSync(`git tag -d latest`);
+    execSync(`git tag latest`);
 
     core.setOutput("tag", newTag)
     execSync(`git push origin --tags`);
+
+
 
     console.log(`Tag ${newTag} created and pushed.`);
     console.log("latest tag moved to latest commit")

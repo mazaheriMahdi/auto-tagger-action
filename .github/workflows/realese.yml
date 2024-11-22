@@ -1,8 +1,0 @@
-name: Create Release from Tag
-
-on:
-  push:
-    tags:
-
-jobs:
-
