@@ -1,5 +1,6 @@
 on: [push]
 
+
 jobs:
   tag:
     permissions:
@@ -17,3 +18,4 @@ jobs:
       # Use the output from the `hello` step
       - name: latest tag
         run: echo "The Latest version ${{ steps.hello.outputs.tag }}"
+
