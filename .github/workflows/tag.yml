@@ -45,16 +45,3 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create latest release
-        id: create_latest_release
-        uses: actions/create-release@v1
-        with:
-          tag_name: latest
-          release_name: Release latest
-          body: |
-              Automatically generated release for tag latest.
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
