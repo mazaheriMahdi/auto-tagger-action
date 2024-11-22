@@ -8,6 +8,8 @@ jobs:
       - name: tag
         id: tag
         uses: mazaheriMahdi/auto-tagger-action@v0.0.2
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Use the output from the `hello` step
       - name: latest tag
         run: echo "The Latest version ${{ steps.hello.outputs.tag }}"
