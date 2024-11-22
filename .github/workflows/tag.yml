@@ -1,10 +1,9 @@
 on: [push]
 
-
 jobs:
   tag:
     permissions:
-        contents: write
+      contents: write
     runs-on: ubuntu-latest
     name: tag pushed commit
     steps:
@@ -14,7 +13,7 @@ jobs:
         id: tag
         uses: mazaheriMahdi/auto-tagger-action@v0.0.10
         env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Use the output from the `hello` step
       - name: latest tag
         run: echo "The Latest version ${{ steps.tag.outputs.tag }}"
@@ -46,3 +45,16 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create latest release
+        id: create_latest_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: latest
+          release_name: Release latest
+          body: |
+              Automatically generated release for tag latest.
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
