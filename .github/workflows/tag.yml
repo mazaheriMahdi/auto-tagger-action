@@ -23,6 +23,8 @@ jobs:
       tag: ${{ steps.tag.outputs.tag }}
 
   create-release:
+    permissions:
+      contents: write
     needs: tag
     runs-on: ubuntu-latest
     steps:
