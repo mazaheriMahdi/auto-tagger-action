@@ -1,0 +1,26 @@
+name: Create Release from Tag
+
+on:
+  push:
+    tags:
+      - 'v*.*.*' # Matches tags like v1.1.1, v2.0.0, etc.
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create a release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref_name }} # Use the current tag
+          release_name: Release ${{ github.ref_name }}
+          body: |
+            Automatically generated release for tag ${{ github.ref_name }}.
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

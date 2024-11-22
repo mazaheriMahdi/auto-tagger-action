@@ -34,6 +34,10 @@ const core = require('@actions/core');
 
     core.setOutput("tag", newTag)
     console.log(`Tag ${newTag} created and pushed.`);
+
+    execSync(`git tag latest`);
+    execSync(`git push origin latest`);
+    console.log("latest tag puhed")
   } catch (error) {
     console.error("Error incrementing version:", error.message);
     process.exit(1);
