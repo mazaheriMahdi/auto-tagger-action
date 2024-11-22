@@ -2,6 +2,8 @@ on: [push]
 
 jobs:
   tag:
+    permissions:
+        contents: write
     runs-on: ubuntu-latest
     name: tag pushed commit
     steps:
