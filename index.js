@@ -27,6 +27,7 @@ const core = require('@actions/core');
 
 
     execSync(`git tag ${newTag}`);
+
     core.setOutput("tag", newTag)
     execSync(`git push origin --tags`);
 
