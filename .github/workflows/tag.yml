@@ -17,5 +17,5 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Use the output from the `hello` step
       - name: latest tag
-        run: echo "The Latest version ${{ steps.hello.outputs.tag }}"
+        run: echo "The Latest version ${{ steps.tag.outputs.tag }}"
 

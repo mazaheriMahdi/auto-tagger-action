@@ -25,7 +25,7 @@ const core = require('@actions/core');
     const newTag = `v${major}.${minor}.${patch + 1}`;
     console.log(`New tag: ${newTag}`);
 
-    execSync(`git tag -fa latest`);
+
     execSync(`git tag ${newTag}`);
     core.setOutput("tag", newTag)
     execSync(`git push origin --tags`);
