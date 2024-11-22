@@ -12,32 +12,26 @@ const core = require('@actions/core');
     const octokit = getOctokit(token);
     const { owner, repo } = context.repo;
 
-    // Fetch all tags and sort them
     execSync("git fetch --tags");
     const tags = execSync("git tag --list 'v[0-9]*.[0-9]*.[0-9]*' --sort=-v:refname")
       .toString()
       .trim()
       .split("\n");
 
-    // Get the latest tag or default to v0.0.0
     const latestTag = tags[0] || "v0.0.0";
     console.log(`Latest tag: ${latestTag}`);
 
-    // Parse the latest tag
     const [major, minor, patch] = latestTag.slice(1).split(".").map(Number);
     const newTag = `v${major}.${minor}.${patch + 1}`;
     console.log(`New tag: ${newTag}`);
 
-    // Create and push the new tag
+    execSync(`git tag -fa latest`);
     execSync(`git tag ${newTag}`);
-    execSync(`git push origin ${newTag}`);
-
     core.setOutput("tag", newTag)
-    console.log(`Tag ${newTag} created and pushed.`);
+    execSync(`git push origin --tags`);
 
-    execSync(`git tag latest`);
-    execSync(`git push origin latest`);
-    console.log("latest tag puhed")
+    console.log(`Tag ${newTag} created and pushed.`);
+    console.log("latest tag moved to latest commit")
   } catch (error) {
     console.error("Error incrementing version:", error.message);
     process.exit(1);
