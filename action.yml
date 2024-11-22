@@ -1,14 +1,10 @@
 name: 'Mahdi Mazaheri Auto Tagger'
 description: 'Automatic tag versioning'
-inputs:
-  token:
-    description: 'git hub token to push the tags'
-    required: true
-    default: ''
+inputs: {}
 outputs:
   tag:
     description: 'latest version'
-
+    
 runs:
   using: 'node20'
   main: 'index.js'

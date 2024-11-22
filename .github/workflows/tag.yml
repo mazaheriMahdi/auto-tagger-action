@@ -1,0 +1,13 @@
+on: [push]
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    name: tag pushed commit
+    steps:
+      - name: tag
+        id: tag
+        uses: mazaheriMahdi/auto-tagger-action@v0.0.1
+      # Use the output from the `hello` step
+      - name: latest tag
+        run: echo "The Latest version ${{ steps.hello.outputs.tag }}"
