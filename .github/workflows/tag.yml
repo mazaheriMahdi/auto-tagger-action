@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     name: tag pushed commit
     steps:
+      - name: checkout
+        uses: actions/checkout@v4
       - name: tag
         id: tag
         uses: mazaheriMahdi/auto-tagger-action@v0.0.2
