@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: tag
         id: tag
-        uses: mazaheriMahdi/auto-tagger-action@v0.0.1
+        uses: mazaheriMahdi/auto-tagger-action@v0.0.2
       # Use the output from the `hello` step
       - name: latest tag
         run: echo "The Latest version ${{ steps.hello.outputs.tag }}"
