@@ -1,5 +1,8 @@
 name: 'Mahdi Mazaheri Auto Tagger'
 description: 'Automatic tag versioning'
+branding:
+  icon: "tag" 
+  color: "red" 
 inputs: {}
 outputs:
   tag:
