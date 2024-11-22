@@ -19,3 +19,26 @@ jobs:
       - name: latest tag
         run: echo "The Latest version ${{ steps.tag.outputs.tag }}"
 
+  create-release:
+    needs: tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: test
+        run: echo ${{ jobs.tag.steps.tag.outputs.tag }}
+
+      - name: Create a release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ jobs.tag.steps.tag.outputs.tag }} # Use the current tag
+          release_name: Release ${{ github.ref_name }}
+          body: |
+            Automatically generated release for tag ${{ github.ref_name }}.
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
