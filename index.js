@@ -30,12 +30,6 @@ const core = require('@actions/core');
     execSync(`git tag -d latest`);
     execSync(`git tag latest`);
     
-    // Delete local and remote 'latest' tags
-    execSync(`git tag -d latest`);
-    execSync(`git push origin :refs/tags/latest || true`);  // || true prevents failure if tag doesn't exist
-    
-    // Create and push new 'latest' tag
-    execSync(`git tag latest`);
     execSync(`git push origin latest`);
 
     core.setOutput("tag", newTag)
