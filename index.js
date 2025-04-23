@@ -30,7 +30,7 @@ const core = require('@actions/core');
     execSync(`git tag -d latest`);
     execSync(`git tag latest`);
     
-    execSync(`git push origin latest`);
+    execSync(`git push origin latest -f`);
 
     core.setOutput("tag", newTag)
     execSync(`git push origin --tags`);
